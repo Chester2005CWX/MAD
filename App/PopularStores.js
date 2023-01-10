@@ -4,27 +4,27 @@ import { MaterialIcons, AntDesign, Ionicons, FontAwesome } from '@expo/vector-ic
 
 //-- data array
 const ROWS = [
-  { id: '0', text: 'Ban Mian', img:'https://media.idownloadblog.com/wp-content/uploads/2020/10/iPhone-12-dark-black-wallpaper.png'},
-  { id: '1', text: 'Chicken Rice' },
-  { id: '2', text: 'Monster Curry' },
-  { id: '3', text: 'Mala Hotpot' },
-  { id: '4', text: "McDonald's" },
+  { id: '0', text: 'Chicken Rice Store (FC4)' },
+  { id: '1', text: 'Monster Curry (FC1)' },
+  { id: '2', text: 'Western Food (FC1)' },
+  { id: '3', text: 'Mala Hotpot (FC3)' },
+  { id: '4', text: "McDonald's (plaza)" },
 ]
 const BLANKROWS= [
   { id: 'blank' }
 ]
 //-- JSX for one item
-const Item = ({text, img}) =>{ 
+const Item = ({text}) =>{ 
   console.log("item: " + text)
   return (
     <View style={styles.row} >
-      <Text style={styles.row}>{img + text}</Text>
+      <Text style={styles.row}>{text}</Text>
     </View>
   )
 }
 
 //-- main app
-const FNB = () => {
+const PopularStores = () => {
   console.log("starting app")
 
   console.log("starting app")
@@ -35,7 +35,8 @@ const FNB = () => {
     return (
       //-- item is one item in the data array being passed
       <TouchableOpacity onPress={()=>console.log(`item pressed: ${item.id}, ${item.text}`)}>
-        <Item text={item.img + item.text} />
+        <Item text={item.text} />
+        
       </TouchableOpacity>
     )
   }
@@ -48,21 +49,17 @@ const FNB = () => {
         <AntDesign name="back" size={40} color="black" />
       </TouchableOpacity>
 
-      <Text style={styles.title}>Food & Beverages</Text>
-
-      <TouchableOpacity style={styles.filterButton} onPress={()=>console.log('filter')}>
-        <FontAwesome name="filter" size={45} color="black" text="Filter" />
-        <Text style={styles.filterText}>Filter</Text>
-      </TouchableOpacity>
+      <Text style={styles.title}>Popular Stores</Text>
 
       <View style={styles.rectangle}>
         <SafeAreaView style={{flex: 1}}>
           <FlatList data={ROWS} renderItem={renderItem} keyExtractor={item => item.id} />
         </SafeAreaView>
       </View>
+      
 
       <View style={styles.navbar}>
-      <TouchableOpacity style={styles.activeNavbarIcon} onPress={()=>console.log('You are here')}>
+      <TouchableOpacity style={styles.inactiveNavbarIcons} onPress={()=>console.log('You are here')}>
         <Ionicons name="fast-food-outline" size={70} color="black" />
       </TouchableOpacity>
 
@@ -74,7 +71,7 @@ const FNB = () => {
         <Ionicons name="map-outline" size={70} color="black" />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.inactiveNavbarIcons}>
+      <TouchableOpacity style={styles.activeNavbarIcon}>
         <FontAwesome name="thumbs-o-up" size={70} color="black" />
       </TouchableOpacity>
       </View>
@@ -82,7 +79,7 @@ const FNB = () => {
   )
 }
 
-export default FNB
+export default PopularStores
 
 const styles = StyleSheet.create({
   container: {
@@ -99,8 +96,8 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize : '25',
-    marginLeft: '10%',
-    width: '51%',
+    marginLeft: '30%',
+    width: '100%',
     marginBottom: '5%'
   },
 
@@ -128,17 +125,17 @@ const styles = StyleSheet.create({
     height: "60%",
     width: '100%',
     borderWidth: '4%',
-    backgroundColor: 'white'
+    backgroundColor: '#deae7b'
   },
 
   row: {
-    padding: '3%',
-    fontSize: '30',
-    backgroundColor: '#cfb48b',
-    width: '90%',
-    height:'',
-    borderTopRightRadius: '45',
-    borderBottomRightRadius: '45',
+    padding: '5%',
+    fontSize: '20',
+    fontWeight :'bold',
+    backgroundColor: '#f9e7cf',
+    textAlign:'center',
+    borderRadius: '35',
+    marginBottom: '2%'
   },
 
   navbar: {

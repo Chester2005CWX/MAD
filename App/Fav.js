@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { TouchableOpacity, SafeAreaView, View, FlatList, StyleSheet, Text, Button,} from 'react-native';
-import { MaterialIcons, AntDesign, Ionicons, FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons, AntDesign, Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
 
 //-- data array
 const ROWS = [
-  { id: '0', text: 'Ban Mian', img:'https://media.idownloadblog.com/wp-content/uploads/2020/10/iPhone-12-dark-black-wallpaper.png'},
+  { id: '0', text: 'Ban Mian'},
   { id: '1', text: 'Chicken Rice' },
   { id: '2', text: 'Monster Curry' },
   { id: '3', text: 'Mala Hotpot' },
@@ -14,11 +14,11 @@ const BLANKROWS= [
   { id: 'blank' }
 ]
 //-- JSX for one item
-const Item = ({text, img}) =>{ 
+const Item = ({text}) =>{ 
   console.log("item: " + text)
   return (
     <View style={styles.row} >
-      <Text style={styles.row}>{img + text}</Text>
+      <Text style={styles.row}>{text}</Text>
     </View>
   )
 }
@@ -35,8 +35,10 @@ const FNB = () => {
     return (
       //-- item is one item in the data array being passed
       <TouchableOpacity onPress={()=>console.log(`item pressed: ${item.id}, ${item.text}`)}>
-        <Item text={item.img + item.text} />
+        <Item text={item.text} />
       </TouchableOpacity>
+
+      
     )
   }
 
@@ -48,7 +50,7 @@ const FNB = () => {
         <AntDesign name="back" size={40} color="black" />
       </TouchableOpacity>
 
-      <Text style={styles.title}>Food & Beverages</Text>
+      <Text style={styles.title}>Favorites</Text>
 
       <TouchableOpacity style={styles.filterButton} onPress={()=>console.log('filter')}>
         <FontAwesome name="filter" size={45} color="black" text="Filter" />
@@ -59,14 +61,19 @@ const FNB = () => {
         <SafeAreaView style={{flex: 1}}>
           <FlatList data={ROWS} renderItem={renderItem} keyExtractor={item => item.id} />
         </SafeAreaView>
+        <TouchableOpacity>
+        <Entypo name="cross" size={24} color="black" style={styles.x_button}/>
+      </TouchableOpacity>
       </View>
 
+      
+
       <View style={styles.navbar}>
-      <TouchableOpacity style={styles.activeNavbarIcon} onPress={()=>console.log('You are here')}>
+      <TouchableOpacity style={styles.inactiveNavbarIcons} onPress={()=>console.log('You are here')}>
         <Ionicons name="fast-food-outline" size={70} color="black" />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.inactiveNavbarIcons}>
+      <TouchableOpacity style={styles.activeNavbarIcon}>
         <AntDesign name="star" size={70} color="#ffde59" />
       </TouchableOpacity>
 
@@ -90,6 +97,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#efd5ad',
   },
 
+  x_button : {
+    backgroundColor: 'blue',
+  },
+
   backButton: {
     marginTop: '15%',
     marginLeft: '10%',
@@ -99,7 +110,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize : '25',
-    marginLeft: '10%',
+    marginLeft: '25%',
     width: '51%',
     marginBottom: '5%'
   },
